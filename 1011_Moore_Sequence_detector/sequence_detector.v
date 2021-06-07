@@ -3,17 +3,18 @@ input clock; // clock signal
 input reset; // reset input
 input sequence_in; // binary input
 output reg detector_out; // output of the sequence detector
-parameter  Zero=3'b000, // "Zero" State
-  One=3'b001, // "One" State
-  OneZero=3'b011, // "OneZero" State
-  OneZeroOne=3'b010, // "OnceZeroOne" State
-  OneZeroOneOne=3'b110;// "OneZeroOneOne" State
+//The parameters are declared corresponding to different states of the machine
+parameter  Zero=3'b000, 
+  One=3'b001, 
+  OneZero=3'b011, 
+  OneZeroOne=3'b010, 
+  OneZeroOneOne=3'b110;
 reg [2:0] current_state, next_state; // current state and next state
 // sequential memory of the Moore FSM
 always @(posedge clock, posedge reset)
 begin
  if(reset==1) 
- current_state <= Zero;// when reset=1, reset the state of the FSM to "Zero" State
+ current_state <= Zero;// when reset=1, reset the state of the FSM to its initial state
  else
  current_state <= next_state; // otherwise, next state
 end 
